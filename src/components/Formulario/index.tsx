@@ -2,6 +2,7 @@ import React from "react";
 import Botao from "../Botao";
 import style from './Formulario.module.scss'
 import { ITarefa } from "../../types/tarefa";
+import { v4 as uuidV4 } from 'uuid';
 
 class Formulario extends React.Component<{ 
     setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>
@@ -12,7 +13,7 @@ class Formulario extends React.Component<{
     }
     adicionarTarefa(evento: React.FormEvent<HTMLFormElement>){
         evento.preventDefault();
-        this.props.setTarefas(tarefasAntigas => [...tarefasAntigas, { ...this.state }])
+        this.props.setTarefas(tarefasAntigas => [...tarefasAntigas, { ...this.state, selecionado: false, completado: false, id: uuidV4() }])
     }
     render() {
         return (
